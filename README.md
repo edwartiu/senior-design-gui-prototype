@@ -1,2 +1,2 @@
-# senior-design-gui-prototype
-Tkinter prototype for Android application logic for team Sight Guide's Senior Design Project
+# Sight Guide GUI Prototype
+This repository serves as a Tkinter prototype for an Android application logic for team Sight Guide's Senior Design Project
