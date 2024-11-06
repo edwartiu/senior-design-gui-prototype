@@ -16,16 +16,13 @@ top_label.pack(side=tk.TOP, pady=10)
 middle_text = tk.Label(window, text=instructions_text, font=("Arial", 18), justify="center",  wraplength=320)
 middle_text.pack(pady=40)
 
-
 button_frame =tk.Frame(window)
 button_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=20)
 
-# Add two buttons in the frame
 audio_button = tk.Button(button_frame, text="Upload Audio File", width=10, command=filedialog.askopenfilename)
 audio_button.pack(side=tk.LEFT, expand=True, padx=5)
     
 image_button = tk.Button(button_frame, text="Upload Image File", width=10, command=filedialog.askopenfilename)
 image_button.pack(side=tk.RIGHT, expand=True, padx=5)
 
-# Run the main event loop
 window.mainloop()
