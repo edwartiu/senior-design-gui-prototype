@@ -24,7 +24,9 @@ class OpenAIClient:
 
 
     def upload_text_prompt(self, prompt: str) -> str:
-
+        """
+        Makes an API call to OpenAI where the given prompt is processed
+        """
         response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
@@ -35,6 +37,13 @@ class OpenAIClient:
                 }
             ]
         )
-
         return response.choices[0].message.content
+    
+
+    def upload_image(self, ) -> str:
+        """
+        Makes an API call to OpenAI where image is processed to determine objects 
+        within a camera image
+        """
+        return None
     
