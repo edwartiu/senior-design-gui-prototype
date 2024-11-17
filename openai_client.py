@@ -2,7 +2,8 @@ from openai import OpenAI
 import os
 
 """ OpenAI Client object that will facilitate communication between 
-user and OpenAI API
+user and OpenAI API. Built on OpenAI develop quickstarts(https://platform.openai.com/docs/overview)
+for Sight Guide specific use.
 """
 class OpenAIClient:
     def __init__(self):
@@ -40,10 +41,30 @@ class OpenAIClient:
         return response.choices[0].message.content
     
 
-    def upload_image(self, ) -> str:
+    def upload_image(self, image_url: str ) -> str:
         """
         Makes an API call to OpenAI where image is processed to determine objects 
         within a camera image
         """
-        return None
-    
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an instant for a visually impaired user."},
+                {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "What is in this image?"},
+                    {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": image_url,
+                    },
+                    },
+                ],
+                }
+            ],
+            max_tokens=300,
+        )
+
+        return response.choices[0].message.content
+            
