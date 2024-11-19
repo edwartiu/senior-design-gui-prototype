@@ -1,5 +1,6 @@
 from openai import OpenAI
 import os
+import base64
 
 """ OpenAI Client object that will facilitate communication between 
 user and OpenAI API. Built on OpenAI develop quickstarts(https://platform.openai.com/docs/overview)
@@ -41,7 +42,7 @@ class OpenAIClient:
         return response.choices[0].message.content
     
 
-    def upload_image(self, image_url: str ) -> str:
+    def general_visual_aid(self, image_path: str ) -> str:
         """
         Makes an API call to OpenAI where image is processed to determine objects 
         within a camera image
@@ -49,15 +50,15 @@ class OpenAIClient:
         response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are an instant for a visually impaired user."},
+                {"role": "system", "content": "You are an assistant for a visually impaired user."},
                 {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "What is in this image?"},
+                    {"type": "text", "text": "Can you give a general description of what is in front of me please."},
                     {
                     "type": "image_url",
                     "image_url": {
-                        "url": image_url,
+                        "url":  f"data:image/jpeg;base64,{self.encode_image(image_path)}"
                     },
                     },
                 ],
@@ -67,4 +68,11 @@ class OpenAIClient:
         )
 
         return response.choices[0].message.content
+
+
+
+    # Function to encode the image (Souce: OpenAI Documenation)
+    def encode_image(self, image_path):
+        with open(image_path, "rb") as image_file:
+            return base64.b64encode(image_file.read()).decode('utf-8')
             
