@@ -50,5 +50,3 @@ def object_dectection():
 
         if (cv2.waitKey(30) == 27):
             break
-
-
