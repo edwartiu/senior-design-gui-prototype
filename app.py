@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from crosswalk_detection import load_image
+from object_detection import object_detection
 
 instructions_text = """Device Connected\n\n\n
 Use the buttons on the device to switch between modes
@@ -9,7 +10,7 @@ Use the buttons on the device to switch between modes
 3 Clicks: Obstacle and Crosswalk Detection"""
 
 window = tk.Tk("Sight Guide App")
-window.geometry("360x640")
+window.geometry("640x640")
 
 top_label = tk.Label(window, text="Sight Guide", font=("Arial", 24, "bold"))
 top_label.pack(side=tk.TOP, pady=10)
@@ -26,7 +27,10 @@ audio_button.pack(side=tk.LEFT, expand=True, padx=5)
 image_button = tk.Button(button_frame, text="Upload Image File", width=10, command=filedialog.askopenfilename)
 image_button.pack(side=tk.RIGHT, expand=True, padx=5)
 
-crosswalk_load_image_button = tk.Button(button_frame, text="Load Crosswalk Image", width=10, command=load_image)
+object_detection_buton = tk.Button(button_frame, text="Object Detection", width=10, command=object_detection)
+object_detection_buton.pack(side=tk.RIGHT, expand=True, padx=5)
+
+crosswalk_load_image_button = tk.Button(button_frame, text="Load Crosswalk Image", width=15, command=load_image)
 crosswalk_load_image_button.pack(side=tk.RIGHT, expand=True, padx=5)
 
 window.mainloop()
