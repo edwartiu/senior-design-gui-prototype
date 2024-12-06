@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
-from crosswalk_detection import load_image
-from object_detection import object_detection
+from local_models.crosswalk_detection import load_image
+from local_models.object_detection import object_detection
 
 instructions_text = """Device Connected\n\n\n
 Use the buttons on the device to switch between modes

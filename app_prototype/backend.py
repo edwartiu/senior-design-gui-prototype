@@ -4,7 +4,7 @@ upload images to the device and the server will process the information and retu
 """
 
 from flask import Flask, request, jsonify, flash, redirect, url_for
-from openai_client import OpenAIClient
+from app_prototype.openai_client import OpenAIClient
 import os
 
 openai_client = OpenAIClient()
