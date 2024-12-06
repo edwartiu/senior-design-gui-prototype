@@ -19,7 +19,7 @@ class OpenAIClient:
         """
         Retrieves OpenAI key stored in file 'openai_apikey.txt' and sets an environment variable for the API key
         """
-        with open("./openai_apikey.txt", "r") as f_obj:
+        with open("openai_apikey.txt", "r") as f_obj:
             api_key = f_obj.read().strip()
 
         os.environ["OPENAI_API_KEY"] = api_key

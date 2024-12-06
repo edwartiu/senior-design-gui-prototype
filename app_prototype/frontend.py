@@ -1,7 +1,24 @@
 import tkinter as tk
 from tkinter import filedialog
-from local_models.crosswalk_detection import load_image
-from local_models.object_detection import object_detection
+from pygame import mixer
+import requests
+
+url = "http://127.0.0.1:8080/general-visual-aid"
+
+def playAudio():
+    mixer.init()
+    mixer.music.load("speech.mp3")
+    mixer.music.play()
+
+
+def uploadImage():
+    filename = filedialog.askopenfilename()
+    with open(filename, 'rb') as img:
+        files = {'image': img}
+        response = requests.post(url, files=files)
+        print(response.content)
+
+
 
 instructions_text = """Device Connected\n\n\n
 Use the buttons on the device to switch between modes
@@ -24,13 +41,9 @@ button_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=20)
 audio_button = tk.Button(button_frame, text="Upload Audio File", width=10, command=filedialog.askopenfilename)
 audio_button.pack(side=tk.LEFT, expand=True, padx=5)
 
-image_button = tk.Button(button_frame, text="Upload Image File", width=10, command=filedialog.askopenfilename)
+image_button = tk.Button(button_frame, text="Upload Image File", width=10, command=uploadImage)
 image_button.pack(side=tk.RIGHT, expand=True, padx=5)
 
-object_detection_buton = tk.Button(button_frame, text="Object Detection", width=10, command=object_detection)
-object_detection_buton.pack(side=tk.RIGHT, expand=True, padx=5)
 
-crosswalk_load_image_button = tk.Button(button_frame, text="Load Crosswalk Image", width=15, command=load_image)
-crosswalk_load_image_button.pack(side=tk.RIGHT, expand=True, padx=5)
 
 window.mainloop()
