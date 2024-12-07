@@ -20,8 +20,9 @@ def general_visual_aid():
     if request.method == "POST":
         if "image" in request.files:
             file = request.files['image']
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.png'))
-            return jsonify({"message": openai_client.general_visual_aid("images/test.png")})
+            file.save(os.path.join(os.path.dirname(__file__), app.config['UPLOAD_FOLDER'], 'test.png'))
+            return jsonify({"message": openai_client.general_visual_aid(
+                os.path.join(os.path.dirname(__file__), app.config['UPLOAD_FOLDER'], 'test.png'))})
 
     return jsonify({"message": "image upload failed"})
 
@@ -31,7 +32,7 @@ def document_reading():
     if request.method == "POST":
         if "file" in request.files:
             file = request.files['file']
-            file.save(os.path.joing(app.config['UPLOAD_FOLDER'], "document-reading", file.filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], "document-reading", file.filename))
 
 
 if __name__ == "__main__":

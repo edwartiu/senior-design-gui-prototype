@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 from pygame import mixer
 import requests
+import json
 
 url = "http://127.0.0.1:8080/general-visual-aid"
 
@@ -16,7 +17,7 @@ def uploadImage():
     with open(filename, 'rb') as img:
         files = {'image': img}
         response = requests.post(url, files=files)
-        print(response.content)
+        print(json.loads(response.content.decode('utf-8'))["message"])
 
 
 
