@@ -56,7 +56,7 @@ class OpenAIClient:
                 {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "Can you give a general description of what is in front of me please."},
+                    {"type": "text", "text": "Can you give a general description of what is in front of me please. Limit yourself to 50 words."},
                     {
                     "type": "image_url",
                     "image_url": {
